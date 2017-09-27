@@ -6,14 +6,14 @@ n_ratio = 0;
 
 addpath L-BFGS-B-C-master/Matlab/;
 load('Data/fea.mat','fea','gnd');
-% l2-normalized the feature. If not, comment out the next line
+% l2-normalize the feature. If not, comment out the next line
 % fea = NormalizeFea(fea,1);
 load(['Data/Split',num2str(train_ratio*100),'.mat'],'trainidx','testidx','valiidx');
 
 nSmp = length(trainidx);
 nClass = length(unique(gnd));
 %% Set hyper-parameters
-% # of base learners:
+% maximum # of base learners:
 maxBase = 300;
 % weight of l2-regularization of \theta_h for learning each new h():
 base_rw = 1e-6 * nSmp;

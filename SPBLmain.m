@@ -39,10 +39,14 @@ TrainObj = struct('idx',trainidx,'fea',fea(trainidx,:),'gnd',traingnd,'nClass',n
 ValiObj = struct('idx',valiidx,'fea',fea(valiidx,:),'gnd',gnd(valiidx),'nClass',nClass);
 TestObj = struct('idx',testidx,'fea',fea(testidx,:),'gnd',gnd(testidx),'nClass',nClass);
 
+% Set the SPL parameters:
+% ini_rr: the initial proportion of the selected samples (with weights vi=1);
+% miu: the annealing parameter; the incremental ratio of the proportion of the selected samples in each iteration.
+% max_rr: the upper bound of the annealed sample proportion.
 ini_rr = 0.6; miu = 1.003; max_rr = 1;
 % Specify the SPL reweighting scheme and the SPL parameters, where we set a SPLopts.zeta
 % as the constant ratio of \zeta over \lambda for mixtrue reweighting.
-SPLopts = struct('Type','mix','zeta',2);
+SPLopts = struct('Type','mix','zeta',2); % means \zeta = 2*\lambda at each iteration.
 ini_idx = Inisel(TrainObj.gnd,ini_rr);
 v = zeros(nSmp,1); v(ini_idx) = 1;
 u = zeros(nSmp,nClass); u(ini_idx,:) = 1/nClass;

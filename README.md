@@ -12,3 +12,7 @@ The matlab code for the IJCAI-16 paper "Self-Paced Boost Learning for Classifica
    Set the "n_ratio" variable for the proportion of the noisily labeled samples.
 
 4. Run "SPBLmain.m" to train the SPBL model with the training set and test the learned model on the test set.
+   The output experimental results:
+   ResObj.test_err: test error rate at each iteration, with the first (second) column as the top-1 (top-5) error rates.
+   ResObj.vali_err: validation error rate at each iteration, with the first (second) column as the top-1 (top-5) error rates.
+   OptRes: struct varaible. The optimal results on the test set based on the validation.
